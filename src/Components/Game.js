@@ -10,6 +10,8 @@ const Game = (props) => {
     const getWhoIsPlaying = (player) => {
         setWhoIsPlaying(player);
     }
+
+    
     return (
         <div>
             <p>Trenutno igra: {whoIsPlaying}</p>

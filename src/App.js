@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Login trigger={login} setTrigger={setLogin} gettingPlayers={gettingPlayers} />
-      {login === false && (<Game player1={playerOne} player2={playerTwo} />)}
+      <Game player1={playerOne} player2={playerTwo} />
     </div>
   );
 }
