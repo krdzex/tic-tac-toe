@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import EndGame from './EndGame';
 import History from './History';
-import Navbar from './Navbar';
+
 const Board = (props) => {
     const [squers, setSquers] = useState(Array(9).fill(null));
     const [oNext, setONext] = useState(false);
-    const igrac1 = props.igrac1;
-    const igrac2 = props.igrac2;
+    const player1 = props.player1;
+    const player2 = props.player2;
     const [occupied, setOccupied] = useState(false);
     const [winner, setWinner] = useState("");
     const [availableSquers, setAvailableSquers] = useState(9);
@@ -15,9 +15,7 @@ const Board = (props) => {
     const [tieGames, setTieGames] = useState(0);
     const [historyOfGames, setHistoryOfGames] = useState([]);
 
-
-
-    const da = (e) => {
+    const clickHandle = (e) => {
         if (availableSquers > 0) {
             if (e.target.innerText === "") {
                 if (oNext === true) {
@@ -26,7 +24,7 @@ const Board = (props) => {
                     squersCopy[e.target.id] = "o";
                     setSquers(squersCopy)
                     setONext(false);
-                    props.getWhoIsPlaying(igrac1)
+                    props.getWhoIsPlaying(player1)
                     setOccupied(false);
                     setAvailableSquers(availableSquers - 1)
                     chackingWinner(squersCopy);
@@ -37,7 +35,7 @@ const Board = (props) => {
                     squersCopy[e.target.id] = "x";
                     setSquers(squersCopy);
                     setONext(true);
-                    props.getWhoIsPlaying(igrac2)
+                    props.getWhoIsPlaying(player2)
                     setOccupied(false);
                     setAvailableSquers(availableSquers - 1);
                     chackingWinner(squersCopy);
@@ -57,7 +55,7 @@ const Board = (props) => {
             x[i].innerHTML = "";
         }
         setONext(false);
-        props.getWhoIsPlaying(igrac1);
+        props.getWhoIsPlaying(player1);
     }
     const chackingWinner = (squers) => {
         const winningCombinations =
@@ -68,43 +66,44 @@ const Board = (props) => {
             const [a, b, c] = winningCombinations[i];
             if (squers[a] && squers[a] === squers[b] && squers[a] === squers[c]) {
                 if (squers[a] === "x") {
-                    setWinner(igrac1);
+                    setWinner(player1);
                     setAvailableSquers(0);
                     setFirstPlayerWins(firstPlayerWins + 1);
-
+                    props.getScores(firstPlayerWins + 1, sacondPlayerWins, tieGames);
                     return;
                 } else {
-                    setWinner(igrac2);
+                    setWinner(player2);
                     setAvailableSquers(0);
                     setSacondPlayerWins(sacondPlayerWins + 1);
+                    props.getScores(firstPlayerWins, sacondPlayerWins + 1, tieGames);
                     return;
                 }
             }
         }
         if (availableSquers === 1 && winner === "") {
-            setTieGames(tieGames + 1)
+            setTieGames(tieGames + 1);
+            props.getScores(firstPlayerWins, sacondPlayerWins, tieGames + 1);
         }
     }
     useEffect(() => {
         localStorage.setItem("historyOfGames", JSON.stringify(historyOfGames));
     }, [historyOfGames])
     return (
-        <div>
-            <Navbar firstPlayerWins={firstPlayerWins} sacondPlayerWins={sacondPlayerWins} tieGames={tieGames} igrac1={igrac1} igrac2={igrac2} />
+        <div className="boardWrapper">
             <div className="grid">
 
                 {squers.map((squers, id) => (
-                    <div className='squers' id={id} onClick={da} key={id}>
+                    <div className='squers' id={id} onClick={clickHandle} key={id}>
 
                     </div>
                 ))}
             </div>
             <div>
-                {occupied && (<p>That squere is occupied</p>)}
+                {occupied && (<p>Choose unoccupied cell!</p>)}
             </div>
 
 
-            <EndGame winner={winner} availableSquers={availableSquers} igrac1={igrac1} igrac2={igrac2} setHistoryOfGames={setHistoryOfGames} historyOfGames={historyOfGames} newGame={newGame} />
+            <EndGame winner={winner} availableSquers={availableSquers} player1={player1} player2={player2} setHistoryOfGames={setHistoryOfGames} historyOfGames={historyOfGames} newGame={newGame} />
             <History historyOfGames={historyOfGames} setHistoryOfGames={setHistoryOfGames} />
         </div>
 

@@ -48,12 +48,53 @@
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   grid-template-rows: repeat(3, 0fr);
+  margin-left: 45%;
 }
 
 .squers {
   border: 1px solid black;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   text-align: center;
-  font-size: 30px;
+  font-size: 45px;
+  font-weight: 700;
+}
+
+.navBar {
+  margin-left: 35%;
+}
+
+.whoIsPlaying {
+  margin-left: 48%;
+}
+
+.endGame h3 {
+  margin-left: 48%;
+}
+
+.endGame button {
+  margin-left: 46%;
+  width: 200px;
+  height: 35px;
+  border: 1px solid black;
+  padding: 0px;
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
+  cursor: pointer;
+}
+
+hr {
+  width: 550px;
+  margin-left: 10px;
+}
+
+.history h3 {
+  margin-left: 47%;
+}
+
+.games {
+  margin-left: 43%;
 }

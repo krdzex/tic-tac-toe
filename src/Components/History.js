@@ -9,11 +9,11 @@ const History = (props) => {
         }
     }
     return (
-        <div>
+        <div className="history">
             <h3>History of all games: </h3>
             {props.historyOfGames.map((historyOfGames, id) => (
-                <div className='games' id={id} key={id}>
-                    <p>{historyOfGames.day}.{historyOfGames.month}  {historyOfGames.hour}:{historyOfGames.minute}   {historyOfGames.player1} vs {historyOfGames.player2} : {historyOfGames.winner === "" ? "tied" : historyOfGames.winner + " won"} </p>
+                <div className='games' key={id}>
+                    <h4>{historyOfGames.day}.{historyOfGames.month}  {historyOfGames.hour}:{historyOfGames.minute}  &emsp;|&emsp; {historyOfGames.player1}&ensp; vs &ensp;{historyOfGames.player2}  &emsp;|&emsp;  {historyOfGames.winner === "" ? "tied" : historyOfGames.winner + " won"}</h4>
                 </div>
             ))}
         </div>
