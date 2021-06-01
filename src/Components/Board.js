@@ -70,12 +70,34 @@ const Board = (props) => {
                     setAvailableSquers(0);
                     setFirstPlayerWins(firstPlayerWins + 1);
                     props.getScores(firstPlayerWins + 1, sacondPlayerWins, tieGames);
+                    setHistoryOfGames([...historyOfGames, {
+                        id: new Date().getTime(),
+                        day: new Date().getDate(),
+                        month: new Date().getMonth() + 1,
+                        hour: new Date().getHours(),
+                        minute: new Date().getMinutes(),
+                        player1: player1,
+                        player2: player2,
+                        winner: player1
+                    }
+                    ])
                     return;
                 } else {
                     setWinner(player2);
                     setAvailableSquers(0);
                     setSacondPlayerWins(sacondPlayerWins + 1);
                     props.getScores(firstPlayerWins, sacondPlayerWins + 1, tieGames);
+                    setHistoryOfGames([...historyOfGames, {
+                        id: new Date().getTime(),
+                        day: new Date().getDate(),
+                        month: new Date().getMonth() + 1,
+                        hour: new Date().getHours(),
+                        minute: new Date().getMinutes(),
+                        player1: player1,
+                        player2: player2,
+                        winner: player2
+                    }
+                    ])
                     return;
                 }
             }
@@ -83,6 +105,17 @@ const Board = (props) => {
         if (availableSquers === 1 && winner === "") {
             setTieGames(tieGames + 1);
             props.getScores(firstPlayerWins, sacondPlayerWins, tieGames + 1);
+            setHistoryOfGames([...historyOfGames, {
+                id: new Date().getTime(),
+                day: new Date().getDate(),
+                month: new Date().getMonth() + 1,
+                hour: new Date().getHours(),
+                minute: new Date().getMinutes(),
+                player1: player1,
+                player2: player2,
+                winner: ""
+            }
+            ])
         }
     }
     useEffect(() => {
@@ -103,7 +136,7 @@ const Board = (props) => {
             </div>
 
 
-            <EndGame winner={winner} availableSquers={availableSquers} player1={player1} player2={player2} setHistoryOfGames={setHistoryOfGames} historyOfGames={historyOfGames} newGame={newGame} />
+            <EndGame winner={winner} availableSquers={availableSquers} newGame={newGame} />
             <History historyOfGames={historyOfGames} setHistoryOfGames={setHistoryOfGames} />
         </div>
 

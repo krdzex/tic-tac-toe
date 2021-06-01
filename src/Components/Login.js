@@ -44,7 +44,7 @@ const Login = (props) => {
                             </tr>
                             <tr>
                                 <td>
-                                    <input onChange={firstPlayerInput} type="text"></input>
+                                    < input placeholder="*This input is required!" style={firstPlayerErr !== "" ? { border: "1px solid red" } : {}} onChange={firstPlayerInput} type="text"></input>
                                 </td>
                             </tr>
                             <tr>
@@ -59,7 +59,7 @@ const Login = (props) => {
                             </tr>
                             <tr>
                                 <td>
-                                    <input onChange={sacondPlayerInput} type="text"></input>
+                                    <input placeholder="*This input is required!" style={sacondPlayerErr !== "" ? { border: "1px solid red" } : {}} onChange={sacondPlayerInput} type="text"></input>
                                 </td>
                             </tr>
                             <tr>
@@ -77,7 +77,7 @@ const Login = (props) => {
                     </table>
                 </form>
             </div >
-        </div>
+        </div >
     ) : "";
 
 };

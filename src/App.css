@@ -45,19 +45,25 @@
 }
 
 .grid {
+  width: 210px;
   display: grid;
   grid-template-columns: repeat(3, 0fr);
   grid-template-rows: repeat(3, 0fr);
   margin-left: 45%;
+  overflow: hidden;
 }
 
 .squers {
-  border: 1px solid black;
   width: 70px;
   height: 70px;
   text-align: center;
   font-size: 45px;
   font-weight: 700;
+  outline: 2px solid #000;
+}
+
+.grid div:last-child {
+  grid-area: 3/3;
 }
 
 .navBar {
@@ -97,4 +103,10 @@ hr {
 
 .games {
   margin-left: 43%;
+}
+
+input::placeholder {
+  color: red;
+  font-size: 20px;
+  font-style: italic;
 }

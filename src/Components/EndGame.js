@@ -11,17 +11,6 @@ const EndGame = (props) => {
     }
     const startNewGame = () => {
         props.newGame(9, "");
-        props.setHistoryOfGames([...props.historyOfGames, {
-            id: new Date().getTime(),
-            day: new Date().getDate(),
-            month: new Date().getMonth() + 1,
-            hour: new Date().getHours(),
-            minute: new Date().getMinutes(),
-            player1: props.player1,
-            player2: props.player2,
-            winner: props.winner
-        }
-        ])
     }
     return (
         <div>
